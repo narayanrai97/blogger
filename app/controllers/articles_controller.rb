@@ -7,6 +7,11 @@ include ArticlesHelper   # Strong Parameters
   
   def show
     @article = Article.find(params[:id])
+    
+    @comment = Comment.new
+    @comment.article_id = @article.id
+    
+    @count = @article.comments.size
   end
   
   def new
