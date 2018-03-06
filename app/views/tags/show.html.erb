@@ -1,0 +1,14 @@
+<h1>Articles Tagged with '<%= @tag.name %>' (<%= @count3 %>)</h1>
+
+<ul>
+    <% @tag.articles.each do |article| %>
+        <li>
+            <%= link_to article.title, article_path(article) %> 
+        </li><br>
+    <% end %>
+</ul>
+
+<!--Display 'Back to Tag List' link only when there's no any article in the list-->
+<% if @count3 == 0 %>
+    <%= link_to "Back to Tag List", tags_path %>
+<% end %>
