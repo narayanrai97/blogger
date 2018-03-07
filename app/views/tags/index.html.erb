@@ -11,8 +11,10 @@
                 <%= link_to tag.name, tag_path(tag) %>
               </td>
               <td>
-                <%= link_to "Delete", tag_path(tag), method: :delete, 
+                <% if logged_in? %>
+                  <%= link_to "Delete", tag_path(tag), method: :delete, 
                             data: {:confirm => "Are you sure you want to delete Tag?"}%>
+                <% end %>
               </td>
             </tr>
           <% end %>

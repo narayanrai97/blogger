@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
     include CommentsHelper   # Strong Parameters
     
-    def index
-        @comments = Comment.all
-    end
+    before_action :require_login, except: [:create] # Just incase if we implement "index" or "destroy"
+    
+    # def index
+    #     @comments = Comment.all
+    # end
     
     def new
         @comment = Comment.new
@@ -25,10 +27,10 @@ class CommentsController < ApplicationController
             redirect_to article_path(@comment.article) 
     end
     
-    def destroy
-        @article = Article.find(params[:id])
-        @comment = Comment.find(params[:id])
-        @comment.destroy
-            redirect_to article_path(@article)
-    end
+    # def destroy
+    #     @article = Article.find(params[:id])
+    #     @comment = Comment.find(params[:id])
+    #     @comment.destroy
+    #         redirect_to article_path(@article)
+    # end
 end

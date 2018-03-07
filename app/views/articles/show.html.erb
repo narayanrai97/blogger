@@ -1,9 +1,10 @@
 <h1><%= @article.title%></h1>
 <%= link_to "<button>Back to Articles</button>".html_safe, articles_path, style: 'float: right'%>
-<%= link_to "<button>Delete</button>".html_safe, article_path(@article), method: :delete, 
-            data: {:confirm => "Really delete the article?"}, style: 'float: right' %>
-<%= link_to "<button>Edit</button>".html_safe, edit_article_path(@article), style: 'float: right' %><br />
-
+<% if logged_in? %>
+    <%= link_to "<button>Delete</button>".html_safe, article_path(@article), method: :delete, 
+                data: {:confirm => "Really delete the article?"}, style: 'float: right' %>
+    <%= link_to "<button>Edit</button>".html_safe, edit_article_path(@article), style: 'float: right' %><br />
+<% end %>
 <!--Listing all the Tags here-->
 <p>
     <%= link_to "<button>Tags:</button>".html_safe, tags_path %>
