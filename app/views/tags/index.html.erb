@@ -1,7 +1,7 @@
-<h1>List of All Tags</h1>
+<h1>List of All Tags (<%= @tags_total%>)</h1>
 <div class="container">
   <div class="row">
-    <p><%= link_to "<button>Back to Articles List</button>".html_safe, articles_path %></p>
+    <p><%= link_to 'Back to Articles', articles_path, style: 'float: right'%></p>
     <div class="column">
       <table class="table">
         <tbody>

@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
     def index
         @tags = Tag.all
+        @tags_total = @tags.count
     end
     
     def show

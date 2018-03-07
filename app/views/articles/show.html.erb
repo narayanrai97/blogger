@@ -1,19 +1,39 @@
-<h1><%= @article.title%></h1><br>
+<h1><%= @article.title%></h1>
+<%= link_to "<button>Back to Articles</button>".html_safe, articles_path, style: 'float: right'%>
+<%= link_to "<button>Delete</button>".html_safe, article_path(@article), method: :delete, 
+            data: {:confirm => "Really delete the article?"}, style: 'float: right' %>
+<%= link_to "<button>Edit</button>".html_safe, edit_article_path(@article), style: 'float: right' %><br />
+
+<!--Listing all the Tags here-->
 <p>
-    <p><%= link_to "Tags:", tags_path %>
+    <%= link_to "<button>Tags:</button>".html_safe, tags_path %>
     <% @article.tags.each do |tag| %>
         <%= link_to tag.name, tag_path(tag) %>
-    <% end %></p>
+    <% end %>
 </p><br>
-<p><%= @article.body%></p><br>
-<%= render partial: 'comments/form' %>
-<%= link_to "<button>Back to Articles</button>".html_safe, articles_path%>
-<%= link_to "<button>Delete</button>".html_safe, article_path(@article), method: :delete, 
-            data: {:confirm => "Really delete the article?"} %>
-<%= link_to "<button>edit</button>".html_safe, edit_article_path(@article) %><br><br><br>
 
+<!--Article image here-->
+<% if @article.image.exists? %>
+    <p><%= image_tag @article.image.url(:medium) %></p>
+<% end %>
+
+<!--Article body here-->
+<p><%= @article.body %></p><br />
+
+<!--Form to write a comment here-->
+<%= render partial: 'comments/form' %>
+
+<!--Links to "Back", "Delete", and "Edit" here-->
+
+<!--All posted comments displaying here-->
 <h3>Comments (<%= @count %>)</h3>
 <%= render partial: 'articles/comment', collection: @article.comments %>
+
+<p>
+    <%= link_to "<button>Back to Top</button>".html_safe, article_path(@article), style: 'float: right'%>
+</p><br /><br />
+
+
 
 
         
