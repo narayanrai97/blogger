@@ -25,29 +25,42 @@ include ArticlesHelper   # Strong Parameters
     @tagging = Tagging.new
     @tagging.article_id = @article.id # association
     @tagging.tag_id = @tag.id        # association
+    
+    # trial here (I left here on March 7 night @ 5pm)
+    # @author = current_user
+    # @article.author_id = @author.id
   end
   
   def create 
-    @article = Article.new(article_params)
-    @article.save
-    # @tag = Tag.new
-    # @tag.save
+    @article = current_user.articles.new(article_params)
+    if @article.save
       flash.notice = "Article '#{@article.title}' has been created!"
       redirect_to article_path(@article)
+    else
+      render 'new'
+    end
   end
   
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
-      flash.notice = "Article '#{@article.title}' has been deleted!"
-      redirect_to articles_path
+    
+    # restricting articles to being destroyed only by their original owner
+    if current_user.id == @article.author_id
+      @article.destroy
+        flash.notice = "Article '#{@article.title}' has been deleted!"
+        redirect_to articles_path
+    else
+      redirect_to(@article, notice: "Sorry, you cannot destroy this Article!")
+    end
   end
   
   def edit
     @article = Article.find(params[:id])
-    # @tag = Tag.find(params[:article_id])
-    # @tagging = Tag.find(params[:article_id])
-    # @tagging.tag_id = @tag.id
+  
+    # adding my extra credit here to restrict "edit" to only its owner
+    unless current_user.id == @article.author_id
+       redirect_to(@article, notice: "Sorry, you cannot edit this Article!") and return
+    end
   end
   
   def update
