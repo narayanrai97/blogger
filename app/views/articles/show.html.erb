@@ -25,10 +25,13 @@
 <%= render partial: 'comments/form' %>
 
 <!--Links to "Back", "Delete", and "Edit" here-->
+<p>
+    View(s): <%= @article.impressionist_count(:filter=>:ip_address) %>
+</p><br />
 
 <!--All posted comments displaying here-->
 <h3>Comments (<%= @count %>)</h3>
-<%= render partial: 'articles/comment', collection: @article.comments %>
+<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
 
 <p>
     <%= link_to "<button>Back to Top</button>".html_safe, article_path(@article), style: 'float: right'%>

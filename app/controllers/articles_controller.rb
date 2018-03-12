@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
 include ArticlesHelper   # Strong Parameters
 
   before_action :require_login, except: [:index, :show]
+  impressionist :actions=>[:show]
 
   def index
     @articles = Article.all
@@ -16,6 +17,9 @@ include ArticlesHelper   # Strong Parameters
     @comment.article_id = @article.id
     
     @count = @article.comments.size
+    
+    # impressionist
+    impressionist(@article)
   end
   
   def new
@@ -50,7 +54,7 @@ include ArticlesHelper   # Strong Parameters
         flash.notice = "Article '#{@article.title}' has been deleted!"
         redirect_to articles_path
     else
-      redirect_to(@article, notice: "Sorry, you cannot destroy this Article!")
+      redirect_to(@article, notice: "Sorry, you cannot delete this Article!")
     end
   end
   
@@ -70,5 +74,4 @@ include ArticlesHelper   # Strong Parameters
       flash.notice = "Article '#{@article.title}' has been updated!"
       redirect_to article_path(@article)
   end
-  
 end

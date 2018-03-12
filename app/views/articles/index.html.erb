@@ -1,6 +1,6 @@
 <h1>All Articles (<%= @count2 %>)</h1>
 <ul id="articles">
-    <% @articles.each do |article| %>
+    <% @articles.reverse.each do |article| %>
         <li>
             <%= link_to article.title, article_path(article),
             class: 'article_title', id: "article_#{article.id}" %> 
