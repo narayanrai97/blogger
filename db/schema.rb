@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20180312012711) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
+    t.integer "author_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_file_name"
@@ -23,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180312012711) do
     t.datetime "image_updated_at"
     t.integer "author_id"
     t.index ["author_id"], name: "index_articles_on_author_id"
+    t.index ["author_id_id"], name: "index_articles_on_author_id_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -38,10 +40,10 @@ ActiveRecord::Schema.define(version: 20180312012711) do
   create_table "comments", force: :cascade do |t|
     t.string "author_name"
     t.text "body"
-    t.integer "article_id"
+    t.integer "article_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_comments_on_article_id"
+    t.index ["article_id_id"], name: "index_comments_on_article_id_id"
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -71,12 +73,12 @@ ActiveRecord::Schema.define(version: 20180312012711) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer "tag_id"
-    t.integer "article_id"
+    t.integer "tag_id_id"
+    t.integer "article_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_taggings_on_article_id"
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["article_id_id"], name: "index_taggings_on_article_id_id"
+    t.index ["tag_id_id"], name: "index_taggings_on_tag_id_id"
   end
 
   create_table "tags", force: :cascade do |t|
