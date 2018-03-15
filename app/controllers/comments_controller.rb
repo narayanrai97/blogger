@@ -16,9 +16,7 @@ class CommentsController < ApplicationController
     end
     
     def create
-        # did this for purpose of displaying flash message below
-        @article = Article.find(params[:id]) 
-        
+        @article = Article.find_by(params[:article_id]) 
         @comment = @article.comments.new(comment_params)
         # @comment.article_id = params[:article_id]
         
