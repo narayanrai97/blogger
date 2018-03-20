@@ -18,9 +18,6 @@
         <h6 style="color: blue;">
           <% if logged_in? %>
             <%= "Logged in as #{current_user.email}" %>
-            <%= link_to "(Logout)", logout_path %>
-          <% else %>
-            <%= link_to "(Login)", login_path %>
           <% end %>
         </h6>
       </div>
