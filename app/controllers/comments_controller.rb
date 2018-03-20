@@ -16,16 +16,17 @@ class CommentsController < ApplicationController
     end
     
     def create
-        @article = Article.find_by(params[:article_id]) 
-        @comment = @article.comments.new(comment_params)
-        # @comment.article_id = params[:article_id]
+        @article = Article.find(params[:article_id]) 
+        
+        @comment = Comment.new(comment_params)
+        @comment.article_id = params[:article_id]
         
         if @comment.save
             flash.notice = "#{@comment.author_name} commented on the article '#{@article.title}'!"
             redirect_to article_path(@comment.article) 
         else
-            flash.notice = "Sorry, the fields cannot be blank!"
-            redirect_to article_path(@article)
+            flash.notice = "Sorry, the comment couldn't be created!"
+            redirect_to article_path(@comment.article)
         end
     end
     
