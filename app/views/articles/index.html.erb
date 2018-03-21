@@ -1,17 +1,16 @@
 <h1>Articles</h1>
 <ul id="articles">
     <% @articles.reverse.each do |article| %>
-        <li style="color: blue;">
-            <%= link_to article.title, article_path(article),
-            class: 'article_title', id: "article_#{article.id}" %>
-            (<%= article.comments.count %> comments)<br/>
-            <p style="font-style: italic; color: black;font-size: 15px">
-                on <%= article.created_at.strftime("%B %d, %Y") %>
-            </p>
-        </li>
-        
         <li>
-            <%= article.body %>
+            <%= link_to article.title, article_path(article), class: 'article_title', id: "article_#{article.id}" %>
+                (<%= article.comments.count %> comments)<br/>
+            
+            <p style="font-style: italic; color: black;font-size: 15px">
+                on <%= article.created_at.strftime("%B %d, %Y") %><br/>
+                <p>
+                    <%= article.body %>
+                </p>
+            </p>
         </li>
     <% end %>
 </ul>

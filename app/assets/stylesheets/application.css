@@ -73,7 +73,7 @@ border-left:5px solid rgba(45, 65, 89, 0.5)}.comment p:first-child{font-weight:b
 padding-left:0;border:0;padding-bottom:1em}.comment + .comment{border-top:none}.comment + h3,.comment + h4{margin:0 0 .5em}
 .comment:nth-last-of-type(1){border-bottom:1px solid #ddd;margin-bottom:2em}h1,h2,h3,h4,h5,h6{font-weight:bold}
 .top-button,a.new_article,.article_actions a[href$='edit'],.article_actions a[data-method='delete']{position:absolute;
-top:26px;right:20px;display:inline-block;padding:4px 100px; margin: 3px 60px 0 400px; font-size:.9em;-moz-box-shadow:rgba(255, 255, 255, 0.4) 0 -1px inset;
+top:26px;right:20px;display:inline-block;padding:4px 100px; margin: 3px 60px 0 600px; font-size:.9em;-moz-box-shadow:rgba(255, 255, 255, 0.4) 0 -1px inset;
 -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 -1px inset;-o-box-shadow:rgba(255, 255, 255, 0.4) 0 -1px inset;
 box-shadow:rgba(255, 255, 255, 0.4) 0 -1px inset;-moz-border-radius:1.2em;-webkit-border-radius:1.2em;
 -o-border-radius:1.2em;-ms-border-radius:1.2em;-khtml-border-radius:1.2em;border-radius:1.2em;
@@ -156,7 +156,7 @@ box-shadow:#192836 0 0.08em 0.2em 1px inset}input[type=submit]:active,input[type
     display: inline-block;
 }
 
-a.auth {
+a.auth, a.new_article {
     padding:4px 11px;
     
     top:26px;
@@ -165,6 +165,10 @@ a.auth {
     font-size:.9em;
     position:absolute;
     color: white;
+}
+
+a.new_article {
+    color: black;
 }
 
 /*

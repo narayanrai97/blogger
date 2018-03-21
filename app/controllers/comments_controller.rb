@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
     # include CommentsHelper   # Strong Parameters
     
-    before_action :require_login, except: [:create] # Just incase if we implement "index" or "destroy"
+    before_action :require_login, except: [:create] # Just incase if we implement "index" 
     
     # def index
     #     @comments = Comment.all
