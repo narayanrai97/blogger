@@ -1,11 +1,7 @@
 <div>
-    <h5>Comment by <%= comment.author_name %></h5>
+    <h5><%= comment.author_name %></h5>
     <p class="comment"><%= comment.body %></p>
-    <p>
-        <!--< link_to 'Destroy Comment', [comment.article, comment], -->
-                <!--method: :delete, data: {confirm: 'You sure?'} %>-->
-    </p>
-    <p style= "color: red; font-size: 15px;">
+    <p style= "color: red; font-size: 15px; font-style: italic;">
         Posted <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago -
         <%= link_to 'Delete', [comment.article, comment], method: :delete,
         data: {confirm: "Are you sure you want to delete this article?"}%>
