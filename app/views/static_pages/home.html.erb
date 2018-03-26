@@ -1,2 +1,26 @@
+<% provide(:title, "Home") %>
 <h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<h1>Articles</h1>
+<ul id="articles">
+    <% @articles.reverse.each do |article| %>
+        <li>
+            <%= link_to article.title, article_path(article), class: 'article_title', id: "article_#{article.id}" %>
+                (<%= article.comments.count %> comments)<br/>
+            
+            <p style="font-style: italic; color: black;font-size: 15px">
+                on <%= article.created_at.strftime("%B %d, %Y") %><br/>
+                <p>
+                    <%= article.body %>
+                </p>
+            </p>
+        </li>
+    <% end %>
+</ul>
+
+<% if logged_in? %>
+    <%= link_to "New Article", new_article_path, class: "new_article"%>
+    <%= link_to "Logout", logout_path, class: "auth" %>
+<% else %>
+    <%= link_to "Login", login_path, class: "auth" %>
+<% end %>
+
