@@ -2,21 +2,20 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
+    <%= render 'layouts/rails_default' %>
+    <%= render 'layouts/shim' %>
   </head>
 
   <body>
-    <p class="flash"><%= flash.notice %></p>
-    <div id="container">
-      <div id="content">
-        <%= yield %>
-        <hr>
-        <h6 style="color: blue;">
-          <% if logged_in? %>
-            <%= "Logged in as #{current_user.email}" %><br/>
-            <%= link_to "(Create a New Author)", new_author_path %>
-          <% end %>
-        </h6> 
+    <div class="container">
+      <%= render 'layouts/header' %>
+      <p class="flash"><%= flash.notice %></p>
+      <div id="container">
+        <!--<div id="content">-->
+          <%= yield %>
+        <!--</div>-->
       </div>
+    <%= render 'layouts/footer' %>
     </div>
   </body>
 </html>
