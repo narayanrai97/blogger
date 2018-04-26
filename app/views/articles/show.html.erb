@@ -1,13 +1,14 @@
 <h1><%= @article.title%></h1>
-<%= link_to "<button>Back to Articles</button>".html_safe, articles_path, style: 'float: right'%>
+<!--<h3>(< @category.name %>)</h3>-->
+<%= link_to "<button>Back to Articles</button>".html_safe, articles_path, style: 'float: right'%> 
 <% if logged_in? %>
     <%= link_to "<button>Delete</button>".html_safe, article_path(@article), method: :delete, 
-                data: {:confirm => "Really delete the article?"}, style: 'float: right' %>
+                data: {:confirm => "Really delete the article?"}, style: 'float: right' %> 
     <%= link_to "<button>Edit</button>".html_safe, edit_article_path(@article), style: 'float: right' %><br />
 <% end %>
 <!--Listing all the Tags here-->
 <p>
-    <%= link_to "<button>Tags:</button>".html_safe, tags_path %>
+    <%= link_to "Tags:", tags_path %>
     <% @article.tags.each do |tag| %>
         <%= link_to tag.name, tag_path(tag) %>
     <% end %>

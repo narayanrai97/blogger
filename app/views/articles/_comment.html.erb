@@ -1,5 +1,5 @@
 <div>
-    <h5><%= comment.author_name %></h5>
+    <h5><%= comment.commenter %></h5>
     <p class="comment"><%= comment.body %></p>
     <p style= "color: red; font-size: 15px; font-style: italic;">
         posted <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago -

@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
         @comment.article_id = params[:article_id]
         
         if @comment.save
-            flash.notice = "#{@comment.author_name} commented on the article '#{@article.title}'!"
+            flash.notice = "#{@comment.commenter} commented on the article '#{@article.title}'!"
             redirect_to article_path(@comment.article) 
         else
             flash.notice = "Sorry, the comment couldn't be created!"
@@ -42,6 +42,6 @@ class CommentsController < ApplicationController
     
     def comment_params
         params.require(:comment)
-              .permit(:author_name, :body)
+              .permit(:commenter, :body)
     end
 end

@@ -5,15 +5,18 @@ include ArticlesHelper   # Strong Parameters
   impressionist :actions=>[:show]
 
   def index
-    @articles = Article.all
+    # @articles = Article.pluck(:id)
+    @articles = Article.order(created_at: :desc).paginate(page: params[:page], per_page: 2)
   end
   
   def show
+    # @category = Category.find(params[:id])
     @article = Article.find(params[:id])
     
     @comment = Comment.new
     @comment.article_id = @article.id
     
+    # @category.id = @article.category_id
     # impressionist
     impressionist(@article)
   end
@@ -21,10 +24,12 @@ include ArticlesHelper   # Strong Parameters
   def new
     @article = Article.new
     @tag = Tag.new
-    
     @tagging = Tagging.new
+    # @category = Category.find(params[:id])
+    
     @tagging.article_id = @article.id # association
     @tagging.tag_id = @tag.id        # association
+    @category.id = @article.category_id
     
     # trial here (I left here on March 7 night @ 5pm)
     # @author = current_user
