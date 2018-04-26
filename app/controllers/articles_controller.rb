@@ -29,9 +29,7 @@ include ArticlesHelper   # Strong Parameters
     
     @tagging.article_id = @article.id # association
     @tagging.tag_id = @tag.id        # association
-    @category.id = @article.category_id
-    
-    # trial here (I left here on March 7 night @ 5pm)
+
     # @author = current_user
     # @article.author_id = @author.id
   end
