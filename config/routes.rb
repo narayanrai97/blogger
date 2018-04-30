@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'events/index'
+  
   # get 'static_pages/home'
   root 'static_pages#home'
 
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
 
   # root to: 'articles#index'
 
-  resources :articles do
+  resources :articles, :photos, :events do
     resources :comments
   end
   

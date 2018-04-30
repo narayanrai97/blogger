@@ -1,0 +1,20 @@
+<h1>Events (<%= @events.count %>)</h1>
+
+<%= will_paginate %>
+<ul id="articles">
+    <% @events.each do |event| %>
+        <li>
+            <h3><%= link_to event.name, event %></h3>
+            
+            <p style="font-style: italic; color: black;font-size: 15px">
+                Created on <%= event.created_at.strftime("%B %d, %Y") %>
+                <!--(< event.comments.count %> comments)<br/>-->
+            </p>
+        </li><br/>
+    <% end %>
+</ul>
+<%= will_paginate %><br/>
+
+<% if logged_in? %>
+    <%= link_to "New Event", new_event_path %>
+<% end %>

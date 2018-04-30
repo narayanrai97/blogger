@@ -50,8 +50,8 @@ include ArticlesHelper   # Strong Parameters
     # restricting articles to being destroyed only by their original owner
     if current_user.id == @article.author_id
       @article.destroy
-        flash.notice = "Article '#{@article.title}' has been deleted!"
-        redirect_to articles_path
+      flash.notice = "Article '#{@article.title}' has been deleted!"
+      redirect_to articles_path
     else
       redirect_to(@article, notice: "Sorry, you cannot delete this Article!")
     end

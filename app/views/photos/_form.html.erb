@@ -1,0 +1,25 @@
+<%= form_for(@photo, html: {multipart: true}) do |f| %>
+    <ul>
+        <% @photo.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+    </ul>
+    <p>
+        <%= f.label :title %><br />
+        <%= f.text_field :title %>
+    </p>
+    
+    <p>
+        <% if @photo.image.exists? %>
+            <%= image_tag @photo.image.url %><br />
+            <%= f.label :image, "Attach a New Image" %><br />
+            <%= f.file_field :image %>
+        <% elsif %>
+            <%= f.label :image, "Attach an Image" %><br />
+            <%= f.file_field :image %>
+        <% end %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>
