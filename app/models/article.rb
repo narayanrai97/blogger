@@ -11,7 +11,9 @@ class Article < ApplicationRecord
     is_impressionable
     
     has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
-    validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+    validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ }
+
+    # validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
     
     def tag_list
         self.tags.collect { |tag| tag.name }.join(", ")
