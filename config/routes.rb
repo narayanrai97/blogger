@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ApplicationApi, at: "/"
+
   get 'events/index'
   
   # get 'static_pages/home'
@@ -23,4 +25,5 @@ Rails.application.routes.draw do
   resources :author_sessions, only: [ :new, :create, :destroy ]
   get 'login'  => 'author_sessions#new'
   get 'logout' => 'author_sessions#destroy'
+  
 end

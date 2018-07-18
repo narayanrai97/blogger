@@ -16,13 +16,12 @@ class CommentsController < ApplicationController
     end
     
     def create
-        @article = Article.find(params[:article_id]) 
-        
+        @article = Article.find(params[:article_id])
         @comment = Comment.new(comment_params)
         @comment.article_id = params[:article_id]
         
         if @comment.save
-            flash.notice = "#{@comment.commenter} commented on the article '#{@article.title}'!"
+            flash.notice = "#{@comment.commenter} commented on the article #{@article.title}!"
             redirect_to article_path(@comment.article) 
         else
             flash.notice = "Sorry, the comment couldn't be created!"
@@ -40,8 +39,7 @@ class CommentsController < ApplicationController
     
     private
     
-    def comment_params
-        params.require(:comment)
-              .permit(:commenter, :body)
-    end
+        def comment_params
+            params.require(:comment).permit(:commenter, :content)
+        end
 end

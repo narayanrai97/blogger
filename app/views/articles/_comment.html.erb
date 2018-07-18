@@ -1,6 +1,6 @@
 <div>
     <h5><%= comment.commenter %></h5>
-    <p class="comment"><%= comment.body %></p>
+    <p class="comment"><%= comment.content %></p>
     <p style= "color: red; font-size: 15px; font-style: italic;">
         posted <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago -
         <%= link_to 'Delete', [comment.article, comment], method: :delete,

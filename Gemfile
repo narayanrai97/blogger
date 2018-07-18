@@ -27,6 +27,14 @@ gem 'sorcery'
 gem 'impressionist', '~> 1.6'
 
 # gem 'capistrano-rails', group: :development
+gem 'grape'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'grape-active_model_serializers'
+gem 'grape_on_rails_routes'
+gem 'grape-swagger'
+
+# Paging
+# gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3',  '1.3.13'
