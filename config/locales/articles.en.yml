@@ -1,0 +1,4 @@
+en:
+  articles:
+    errors:
+      missing_params: "%{field} is missing"

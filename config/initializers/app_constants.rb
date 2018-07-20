@@ -16,4 +16,4 @@ RESPONSE_CODE = {
 # Request header
 
 #
-PER_PAGE = 3
+PER_PAGE = 10
