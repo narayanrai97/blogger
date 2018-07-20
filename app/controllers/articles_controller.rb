@@ -34,7 +34,11 @@ include ArticlesHelper   # Strong Parameters
     # @article.author_id = @author.id
   end
   
-  def create 
+  def create
+    # image = params[:article][:image]
+    # byebug
+    
+    
     @article = current_user.articles.new(article_params)
     if @article.save
       flash.notice = "Article '#{@article.title}' has been created!"
