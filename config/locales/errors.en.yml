@@ -1,6 +1,6 @@
 en:
   errors:
-    bad_request: "Bad Request" # w/o Access Token - (Code 400/Bad Request)
+    bad_request: "Bad Request" 
     missing_parameters: "Maybe some parameters are missing"
     not_authenticated : "Not authenticated"
     forbidden: "403 Forbidden"
@@ -12,7 +12,7 @@ en:
       is_invalid: "Author is invalid"
     article:
       not_found: "Article cannot be found"
-      is_invalid: "Article is invalid"
+      forbidden: "This is forbidden"
     session:
       invalid: "Invalid email or password"
       invalid_token: "Invalid access token"
