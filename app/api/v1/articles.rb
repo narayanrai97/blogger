@@ -66,18 +66,23 @@ module V1
             end
             put ':id' do
                 authenticate!
-                article = current_user.articles.find(params[:id]) 
+                article = Article.find(params[:id]) 
+                
+                # restricting articles to being updated only by their original owner
+                if current_user.id != article.author_id
+                  raise error!({ success: false, message: 'not allowed' })
+                end
                
-               if article.update_attributes(article_params)
-                   article.reload
+                if article.update_attributes(article_params)
+                    article.reload
                    
-                   serialization = ArticleSerializer.new(article)
-                   render_success(serialization.as_json)
-               else
-                   error = article.errors.full_messages.join(', ')
-                   render_error(RESPONSE_CODE[:unprocessable_entity], error)
-                   return
-               end
+                    serialization = ArticleSerializer.new(article)
+                    render_success(serialization.as_json)
+                else
+                    error = article.errors.full_messages.join(', ')
+                    render_error(RESPONSE_CODE[:unprocessable_entity], error)
+                    return
+                end
             end
             
             ## SHOW ARTICLE
@@ -119,7 +124,8 @@ module V1
             
             ## DELETE ARTICLE
             desc 'Delete article', headers: HEADERS_DOCS, http_codes: [
-                { code: 200, message: 'success' },   
+                { code: 200, message: 'success' },
+                { code: 403, message: 'not allowed' },
                 { code: RESPONSE_CODE[:forbidden], message: I18n.t('errors.forbidden') }
             ]
             params do
@@ -127,9 +133,16 @@ module V1
             end
             delete ':id' do
                 authenticate!
+                article = Article.find(params[:id])
                 
-                article = current_user.articles.find(params[:id])
+                # restricting articles to being destroyed only by their original owner
+                if current_user.id != article.author_id
+                  raise error!({ code: 403, message: 'not allowed' })
+                end
+                
                 article.destroy
+                { code: 200, message: 'success' }
+                
             end
             
             ## UPDATE ARTICLE IMAGE
@@ -145,20 +158,26 @@ module V1
             end
             put ':id/image_update' do
                 authenticate!
-                
+            
                 article = Article.find params[:id]
+                
+                # restricting articles image to being updated only by their original owner
+                if current_user.id != article.author_id
+                  raise error!({ success: false, message: 'not allowed' })
+                end
+                
                 image = params[:image]
                 attachment = {
-            			:filename => image[:filename],
-            			:type => image[:type],
-            			:headers => image[:head],
-            			:tempfile => image[:tempfile]
+            			filename: image[:filename],
+            			type:     image[:type],
+            			headers:  image[:head],
+            			tempfile: image[:tempfile]
         		}
         
         		# This is the kind of File object Grape understands so let's pass the hash to it
         		processed_image = ActionDispatch::Http::UploadedFile.new(attachment)
         		
-        		if article.update(image: processed_image)
+        	    if article.update(image: processed_image)
         		    article.reload
                    
                     serialization = ArticleSerializer.new(article)

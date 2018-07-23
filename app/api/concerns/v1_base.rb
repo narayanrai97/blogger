@@ -26,6 +26,7 @@ module V1Base
     end
 
     helpers do
+      
       def logger
         Rails.logger
       end
@@ -37,16 +38,7 @@ module V1Base
       def render_success(json, extra_meta = {})
         {data: json, meta: {code: RESPONSE_CODE[:success], message: "success"}.merge(extra_meta)}
       end
-
-      # def pagination_dict(object)
-      #   {
-      #     # current_page: object.current_page,
-      #     next_page: object.next_page || -1,
-      #     prev_page: object.prev_page || -1,
-      #     total_pages: object.total_pages,
-      #     total_count: object.total_count
-      #   }
-      # end
+      
     end
   end
 end
