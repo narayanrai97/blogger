@@ -16,8 +16,6 @@ include ArticlesHelper   # Strong Parameters
     @comment = Comment.new
     @comment.article_id = @article.id
     
-    # @category.id = @article.category_id
-    # impressionist
     impressionist(@article)
   end
   
@@ -64,7 +62,7 @@ include ArticlesHelper   # Strong Parameters
   def edit
     @article = Article.find(params[:id])
   
-    # adding my extra credit here to restrict "edit" to only its owner
+    # restricting articles to being updated only by their original owner
     unless current_user.id == @article.author_id
        redirect_to(@article, notice: "Sorry, you cannot edit this Article!") and return
     end

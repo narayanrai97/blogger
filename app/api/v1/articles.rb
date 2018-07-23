@@ -30,10 +30,10 @@ module V1
 
                 image = params[:image]
                 attachment = {
-            			:filename => image[:filename],
-            			:type => image[:type],
-            			:headers => image[:head],
-            			:tempfile => image[:tempfile]
+            			filename: image[:filename],
+            			type:     image[:type],
+            			header:   image[:head],
+            			tempfile: image[:tempfile]
         		}
         
         		# This is the kind of File object Grape understands so let's pass the hash to it
