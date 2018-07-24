@@ -3,8 +3,8 @@ module V1
         include V1Base
         include AuthenticateRequest
         
-        VALID_PARAMS = %w(title body tag_list category_id author_id published) 
-        
+        VALID_PARAMS = %w(title body tag_list category_id author_id published)
+
         helpers do
             def article_params
                 params.select{|key,value| VALID_PARAMS.include?(key.to_s)}
@@ -32,7 +32,7 @@ module V1
                 attachment = {
             			filename: image[:filename],
             			type:     image[:type],
-            			header:   image[:head],
+            			headers:  image[:head],
             			tempfile: image[:tempfile]
         		}
         
@@ -184,6 +184,50 @@ module V1
                     render_success(serialization.as_json)
                 else
                     error = article.errors.full_messages.join(', ')
+                    render_error(RESPONSE_CODE[:unprocessable_entity], error)
+                    return
+                end
+            end
+            
+            ## INDEX OF comments
+            desc 'Get comments', headers: HEADERS_DOCS, http_codes: [
+                { code: 200, message: 'success' },
+                { code: RESPONSE_CODE[:forbidden], message: I18n.t('errors.forbidden') }
+            ]
+            params do
+                requires :id,       type: Integer, desc: 'Article id'
+                optional :page,     type: Integer, desc: 'page number'
+                optional :per_page, type: Integer, desc: 'per_page'
+            end
+            get ':id/comments' do 
+                authenticate!
+                article = Article.find(params[:id])
+                
+                page     = (params[:page] || 1).to_i
+                per_page = (params[:per_page] || PER_PAGE).to_i
+                comments = article.comments.order("created_at DESC").paginate(:page => page, :per_page => per_page)
+
+                serialization = ActiveModel::Serializer::CollectionSerializer.new(comments, each_serializer: CommentSerializer, show_token: false)
+                
+                render_success({comments: serialization.as_json})
+            end
+            
+            ## CREATE comment
+            params do 
+               requires :id,        type: Integer, desc: 'Article ID' 
+               requires :commenter, type: String,  desc: 'Commenter'
+               requires :content,   type: String,  desc: 'Content'
+            end
+            post ':id/comments' do 
+                article = Article.find(params[:id])
+                comment = article.comments.new(commenter: params[:commenter], 
+                                                      content: params[:content])
+                
+                if comment.save
+                    serialization = CommentSerializer.new(comment)
+                    render_success(serialization.as_json)
+                else
+                    error = comment.errors.full_messages.join(', ')
                     render_error(RESPONSE_CODE[:unprocessable_entity], error)
                     return
                 end
