@@ -5,19 +5,17 @@ include ArticlesHelper   # Strong Parameters
   impressionist :actions=>[:show]
 
   def index
-    # @articles = Article.pluck(:id)
-    @articles = Article.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+    @articles = Article.order("created_at DESC").paginate(page: params[:page], per_page: 5)
   end
   
   def show
-    # @category = Category.find(params[:id])
     @article = Article.find(params[:id])
     
     @comment = Comment.new
+    
+    ## association
     @comment.article_id = @article.id
     
-    # @category.id = @article.category_id
-    # impressionist
     impressionist(@article)
   end
   
@@ -25,23 +23,16 @@ include ArticlesHelper   # Strong Parameters
     @article = Article.new
     @tag = Tag.new
     @tagging = Tagging.new
-    # @category = Category.find(params[:id])
-    
-    @tagging.article_id = @article.id # association
-    @tagging.tag_id = @tag.id        # association
 
-    # @author = current_user
-    # @article.author_id = @author.id
+    ## association
+    @tagging.article_id = @article.id 
+    @tagging.tag_id = @tag.id        
   end
   
   def create
-    # image = params[:article][:image]
-    # byebug
-    
-    
     @article = current_user.articles.new(article_params)
     if @article.save
-      flash.notice = "Article '#{@article.title}' has been created!"
+      flash.notice = "Article #{@article.title} has been created!"
       redirect_to article_path(@article)
     else
       render 'new'

@@ -1,11 +1,12 @@
 <h1><%= @article.title%></h1>
-<!--<h3>(< @category.name %>)</h3>-->
+
 <%= link_to "<button>Back to Articles</button>".html_safe, articles_path, style: 'float: right'%> 
 <% if logged_in? %>
     <%= link_to "<button>Delete</button>".html_safe, article_path(@article), method: :delete, 
                 data: {:confirm => "Really delete the article?"}, style: 'float: right' %> 
     <%= link_to "<button>Edit</button>".html_safe, edit_article_path(@article), style: 'float: right' %><br />
 <% end %>
+
 <!--Listing all the Tags here-->
 <p>
     <%= link_to "Tags:", tags_path %>
@@ -25,12 +26,11 @@
 <!--Form to write a comment here-->
 <%= render partial: 'comments/form' %>
 
-<!--Links to "Back", "Delete", and "Edit" here-->
 <p>
     <%= @article.impressionist_count(:filter=>:ip_address) %> people(s) visited this article.
 </p><br />
 
-<!--All posted comments displaying here-->
+<!-- Show comments-->
 <h3>Comments (<%= @article.comments.count %>)</h3>
 <%= render partial: 'articles/comment', collection: @article.comments.reverse %>
 
