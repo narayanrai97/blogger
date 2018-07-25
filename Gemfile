@@ -39,8 +39,12 @@ gem 'grape-swagger'
 group :development, :test do
   gem 'sqlite3',  '1.3.13'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails' # added
+  
+  # gem 'guard-spork',  '1.2.0'
+  # gem 'childprocess', '0.3.6'
+  # gem 'spork',        '0.9.2'
 end
 
 group :development do
@@ -50,12 +54,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# group :test do
-#   gem 'rails-controller-testing', '1.0.2'
-#   gem 'minitest-reporters',       '1.1.14'
-#   gem 'guard',                    '2.13.0'
-#   gem 'guard-minitest',           '2.4.4'
-# end
+group :test do
+  gem 'capybara', '2.3.0'
+end
 
 group :production do
   gem 'pg', '0.18.4'
