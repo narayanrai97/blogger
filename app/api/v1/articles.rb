@@ -200,7 +200,7 @@ module V1
                 optional :per_page, type: Integer, desc: 'per_page'
             end
             get ':id/comments' do 
-                authenticate!
+                # authenticate!
                 article = Article.find(params[:id])
                 
                 page     = (params[:page] || 1).to_i
