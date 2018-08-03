@@ -26,3 +26,4 @@
 /public/system/photos/images
 
 database.yml
+bundler_stubs/
