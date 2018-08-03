@@ -32,20 +32,20 @@ gem 'grape-swagger'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'selenium-webdriver'
-  gem 'rspec-rails' # added
   
-  # gem 'guard-spork',  '1.2.0'
+  gem 'rspec-rails'            # added
+  gem 'guard-rspec',  '4.2.9'
   # gem 'childprocess', '0.3.6'
   # gem 'spork',        '0.9.2'
 end
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
+# group :assets do
   gem 'sass-rails',   '~> 5.0'
   gem 'coffee-rails', '~> 4.2'
   gem 'uglifier',     '>= 1.3.0'
-end
+# end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -55,7 +55,9 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '2.3.0'
+  gem 'capybara',   '2.3.0'
+  gem 'rb-inotify', '0.9.10'
+  gem 'libnotify',  '0.9.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
