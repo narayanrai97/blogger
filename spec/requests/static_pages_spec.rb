@@ -1,56 +1,37 @@
 require 'spec_helper'
 
 describe "Static pages" do
-
+  subject { page }
+  
   describe "Home page" do
-
-    it "should have the content 'Blogger Me'" do
-      visit '/'
-      page.should have_content('Blogger Me')
-    end
+    before { visit '/' }
     
-    it "should have the title 'Home'" do 
-      visit '/'
-      page.should have_title("Home | Blogger Me App")
-    end
+    it { should have_content('Blogger Me') }
+    
+    it { should have_title(full_title('Home')) }
   end
   
   describe "Help page" do 
+    before { visit '/help' }
     
-    it "should have the content 'Help'" do
-      visit '/help'
-      page.should have_content('Help')
-    end
+    it { should have_content('Help') }
     
-    it "should have the title 'Help'" do
-      visit '/help'
-      page.should have_title("Help | Blogger Me App")
-    end
+    it { should have_title(full_title('Help')) }
   end
   
   describe "About page" do
+    before { visit '/about' }
     
-    it "should have the content 'About Us'" do
-      visit '/about'
-      page.should have_content('About Us')
-    end
+    it { should have_content('About Us') }
     
-    it "should have the title 'About Us'" do
-      visit '/about'
-      page.should have_title("About Us | Blogger Me App")
-    end
+    it { should have_title(full_title('About Us')) }
   end
   
   describe "Contact page" do 
+    before { visit '/contact' }
     
-    it "should have the content 'Contact Us'" do
-      visit '/contact'
-      page.should have_content('Contact Us')
-    end
+    it { should have_content('Contact Us') }
     
-    it "should have the title 'Contact Us'" do
-      visit '/contact'
-      page.should have_title("Contact Us | Blogger Me App")
-    end
+    it { should have_title(full_title('Contact Us')) }
   end
 end
