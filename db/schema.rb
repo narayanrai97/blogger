@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180717162304) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180717162304) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.integer "category_id"
     t.boolean "published", default: false
     t.index ["author_id"], name: "index_articles_on_author_id"
@@ -56,7 +59,7 @@ ActiveRecord::Schema.define(version: 20180717162304) do
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.text "content"
-    t.integer "article_id"
+    t.bigint "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 20180717162304) do
 
   create_table "descriptions", force: :cascade do |t|
     t.text "text"
-    t.integer "category_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_descriptions_on_category_id"
@@ -113,8 +116,8 @@ ActiveRecord::Schema.define(version: 20180717162304) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer "tag_id"
-    t.integer "article_id"
+    t.bigint "tag_id"
+    t.bigint "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_taggings_on_article_id"
@@ -127,4 +130,9 @@ ActiveRecord::Schema.define(version: 20180717162304) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "articles", "authors"
+  add_foreign_key "comments", "articles"
+  add_foreign_key "descriptions", "categories"
+  add_foreign_key "taggings", "articles"
+  add_foreign_key "taggings", "tags"
 end

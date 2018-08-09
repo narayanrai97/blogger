@@ -33,5 +33,9 @@ describe "Static pages" do
     it { should have_content('Contact Us') }
     
     it { should have_title(full_title('Contact Us')) }
+    
+    it { should have_content("Contact the Blogger Me App about the sample app at the contact page.") }
+      
+    it { should have_link('contact page') }
   end
 end
