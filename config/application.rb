@@ -19,5 +19,9 @@ module Blogger
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
     
     config.autoload_paths += Dir["#{config.root}/lib"]  #ADDED HERE
+    
+    config.generators do |g|
+      g.factory_bot dir: 'custom/dir/for/factories'
+    end
   end
 end

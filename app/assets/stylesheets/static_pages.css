@@ -1,0 +1,45 @@
+* {
+  /*font-family: fantasy;*/ }
+
+body {
+  /*background-color: lightblue;*/ }
+
+.selfie {
+  width: 15%;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.box {
+  border-color: black;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  color: black;
+  margin: 10px 0;
+  padding: 5px 10px; }
+
+#likes {
+  background-color: green; }
+
+#places {
+  background-color: coral; }
+
+#links {
+  background-color: teal; }
+
+#main {
+  border-color: #999;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 15px 20px;
+  margin: 15px;
+  background-color: lightblue; }
+
+img {
+  border: 1px solid #021a40;
+  padding: 1px;
+  border-radius: 5px; }
+
+/*# sourceMappingURL=static_pages.css.map */

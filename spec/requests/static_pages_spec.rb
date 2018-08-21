@@ -1,41 +1,52 @@
-require 'spec_helper'
+# require 'spec_helper'
+require 'rails_helper'
 
-describe "Static pages" do
-  subject { page }
+RSpec.describe "Static pages", type: :request do
+
+    describe "Home page" do
   
-  describe "Home page" do
-    before { visit '/' }
+      it "renders home template" do
+        get root_path
+        json = JSON.parse(response.body)
+        expect(response).to render_template(:home)
+        expect(response.status).to eq(200)
+        
+        expect(json['static_pages']).to contain_exactly('Blogger Me')
+      # it { should have_title('Home | Blogger Me App') }
+      end
+    end
     
-    it { should have_content('Blogger Me') }
-    
-    it { should have_title(full_title('Home')) }
-  end
-  
-  describe "Help page" do 
-    before { visit '/help' }
-    
-    it { should have_content('Help') }
-    
-    it { should have_title(full_title('Help')) }
-  end
-  
-  describe "About page" do
-    before { visit '/about' }
-    
-    it { should have_content('About Us') }
-    
-    it { should have_title(full_title('About Us')) }
-  end
-  
-  describe "Contact page" do 
-    before { visit '/contact' }
-    
-    it { should have_content('Contact Us') }
-    
-    it { should have_title(full_title('Contact Us')) }
-    
-    it { should have_content("Contact the Blogger Me App about the sample app at the contact page.") }
+    describe "Help page" do 
       
-    it { should have_link('contact page') }
-  end
+      it "renders help template" do
+        get help_path
+        expect(response).to render_template(:help)
+        expect(response.status).to eq(200)
+      # it { should have_title('Help | Blogger Me App') }
+      end
+    end
+    
+    describe "About page" do
+      
+      it "renders an about template" do
+        get about_path
+        expect(response).to render_template(:about)
+        expect(response.status).to eq(200)
+      end
+      # it { should have_content('About Us') }
+      # it { should have_title('About Us | Blogger Me App') }
+    end
+    
+    describe "Contact page" do
+      
+      it "renders contact template" do
+        get contact_path
+        expect(response).to render_template(:contact)
+        expect(response.status).to eq(200)
+      end
+      
+      # it { should have_content('Contact Us') }
+      # it { should have_title('Contact Us | Blogger Me App') }
+      # it { should have_link('contact page') }
+    end
 end

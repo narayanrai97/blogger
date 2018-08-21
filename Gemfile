@@ -18,7 +18,7 @@ gem 'turbolinks', '~> 5'
 # gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", :git => "git@github.com:thoughtbot/paperclip.git"
 gem 'sorcery'
 gem 'impressionist', '~> 1.6'
 
@@ -32,15 +32,10 @@ gem 'grape-swagger'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'selenium-webdriver'
-  
-  gem 'rspec-rails'            # added
-  gem 'guard-rspec',  '4.2.9'
-  # gem 'childprocess', '0.3.6'
-  # gem 'spork',        '0.9.2'
+  gem 'rspec-rails'            # addedb
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
+# Gems used only for assets and not required in production environments by default.
 # group :assets do
   gem 'sass-rails',   '~> 5.0'
   gem 'coffee-rails', '~> 4.2'
@@ -55,10 +50,11 @@ group :development do
 end
 
 group :test do
-  gem 'capybara',   '2.3.0'
-  gem 'rb-inotify', '0.9.10'
-  gem 'libnotify',  '0.9.4'
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'rails-controller-testing'
