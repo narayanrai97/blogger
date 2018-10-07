@@ -33,6 +33,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'selenium-webdriver'
   gem 'rspec-rails'            # addedb
+  gem 'listen', '3.1.5'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Gems used only for assets and not required in production environments by default.
@@ -44,9 +46,9 @@ end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  # gem 'listen', '3.1.5'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  # gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
