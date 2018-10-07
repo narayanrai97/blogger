@@ -30,6 +30,13 @@
     <%= form.label :password_confirmation %>
     <%= form.text_field :password_confirmation, id: :author_password_confirmation %>
   </div><br />
+  
+  <div class="control-group">
+        <%= form.label "Admin?", class: 'control-label' %>
+        <!--<div class="controls">-->
+            <%= form.select(:username, options_for_select([['Admin', true], ['Not Admin', false]])) %>
+        <!--</div>-->
+    </div><br />
 
   <div class="actions">
     <%= form.submit %>
