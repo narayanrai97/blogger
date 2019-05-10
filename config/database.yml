@@ -10,7 +10,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   username: postgres
-  # password: 
+  # password:
 
 development:
   adapter:  postgresql
@@ -26,6 +26,6 @@ test:
 
 production:
   <<: *default
-  # database: db/production.postgresql
-  
+  database: db/production.postgresql
+
   url: <%= ENV['DATABASE_URL'] %>
