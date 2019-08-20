@@ -1,4 +1,5 @@
 <% provide(:title, 'Home') %>
+
 <!-- flash message starts here -->
  <% if @message.present? %>
    <div id="div1">
@@ -9,18 +10,10 @@
          </div>
          <!-- <div class="remove"><button id="my_x_button">< fa_icon "times" %></button></div> -->
        </div>
-     <% if false %>
-     <div class="alert alert-<%=@message.message_type%>">
-       <div class="left">
-         <h4><b><%= @message.titulo %></b></h4>
-         <p><%= @message.cuerpo %></p>
-       </div>
-       <div class="remove"><button><%= fa_icon "times" %></button></div>
-     </div>
-     <% end %>
    </div>
- <% end %>
+<% end %>
 <!-- flash message ends -->
+
 <div class="links">
   <%= link_to "Articles", articles_path %> |
   <%= link_to "Photos", photos_path %> |
