@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   mount ApplicationApi, at: "/"
 
   get 'events/index'
@@ -14,13 +13,18 @@ Rails.application.routes.draw do
   resources :articles, :photos, :events do
     resources :comments
   end
-  
+
   resources :tags
   resources :authors
   resources :impressions
-  
+  resources :messages do
+    member do
+      put 'post', 'unpost'
+    end
+  end
+
   resources :author_sessions, only: [ :new, :create, :destroy ]
   get 'login'  => 'author_sessions#new'
   get 'logout' => 'author_sessions#destroy'
-  
+
 end
