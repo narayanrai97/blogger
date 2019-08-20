@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @message = Message.posted.order(updated_at: :desc).first
+    @message = Message.posted_messages.order(updated_at: :desc).first
   end
 
   def help
