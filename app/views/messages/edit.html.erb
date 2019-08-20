@@ -1,2 +1,17 @@
-<h1>Messages#edit</h1>
-<p>Find me in app/views/messages/edit.html.erb</p>
+<h1 class="center"><%= (t'message.edit_msg')%></h1>
+<div class="container">
+  <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="row row-centered">
+      <div class="col-centered">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+              <h3 class="panel-title"><%= (t'message.edit_msg') %></h3>
+          </div>
+          <div class="panel-body">
+            <%= render 'form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
