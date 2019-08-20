@@ -15,6 +15,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'jquery-rails', '4.3.1'
 gem 'turbolinks', '~> 5'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk', '~> 2'
 gem 'sorcery'
 gem 'impressionist', '~> 1.6'
 gem 'grape'
