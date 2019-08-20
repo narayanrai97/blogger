@@ -14,8 +14,6 @@ class Article < ApplicationRecord
 
     has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
     validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ }
-
-    s3_region: ENV["aws_region"]
     # validates_attachment :image
     # do_not_validate_attachment_file_type :image
 
