@@ -11,9 +11,9 @@
           <%= link_to "edit", edit_message_path(message), class: "btn btn-sm btn-secondary" %>
           <%= link_to "delete", message, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-secondary" %>
           <% if message.posted? %>
-            <%= link_to "Unpost", unpost_message_path(message), method: :put %>
+            <%= link_to "UNPOST", unpost_message_path(message), class: "btn btn-sm btn-success", method: :put %>
           <% else %>
-            <%= link_to "Post", post_message_path(message), method: :put %>
+            <%= link_to "POST", post_message_path(message), class: "btn btn-sm btn-warning", method: :put %>
           <% end %>
         </div>
       </div>
