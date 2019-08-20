@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   mount ApplicationApi, at: "/"
+  namespace :api do
+    namespace :v1 do
+      resources :messages, only: [:index]
+    end
+  end
 
   get 'events/index'
   root 'static_pages#home'
