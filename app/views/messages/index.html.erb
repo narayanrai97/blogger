@@ -10,6 +10,11 @@
         <div class="controls col-sm-5 col-md-3">
           <%= link_to "edit", edit_message_path(message), class: "btn btn-sm btn-secondary" %>
           <%= link_to "delete", message, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-secondary" %>
+          <% if message.posted? %>
+            <%= link_to "Unpost", unpost_message_path(message), method: :put %>
+          <% else %>
+            <%= link_to "Post", post_message_path(message), method: :put %>
+          <% end %>
         </div>
       </div>
     </div>
