@@ -10,15 +10,6 @@
         <div class="controls col-sm-5 col-md-3">
           <%= link_to "edit", edit_message_path(message), class: "btn btn-sm btn-secondary" %>
           <%= link_to "delete", message, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-secondary" %>
-          <% if message.posted? %>
-            <%= button_to unpost_message_path(message), class: "btn btn-sm btn-success", method: :put do %>
-              <i class="fa fa-check-square"></i> <%= (t'buttons_t.unpost')%>
-            <% end %>
-          <% else %>
-            <%= button_to post_message_path(message), class: "btn btn-sm btn-primary", method: :put do %>
-              <i class="fa fa-square"></i> <%= (t'buttons_t.post')%>
-            <% end %>
-          <% end %>
         </div>
       </div>
     </div>
@@ -32,8 +23,8 @@
 </div>
 <!-- pagination -->
 <div class="pagination">
-    <div class="page_info">
-      <%= page_entries_info @posts %>
-    </div>
-    <%= will_paginate @posts, :container => false %>
+  <div class="page_info">
+    <%= page_entries_info @posts %>
   </div>
+  <%= will_paginate @posts, :container => false %>
+</div>
