@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:edit, :update, :destroy]
+  before_action :set_message, only: [:edit, :update, :destroy, :post, :unpost]
 
   def index
     @messages = Message.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
@@ -35,6 +35,18 @@ class MessagesController < ApplicationController
     @message.destroy
     flash[:success] = "Message deleted."
     redirect_to messages_path
+  end
+
+  def post
+    @message.update_attributes(posted: true)
+    flash[:notice] = "Message posted."
+    redirect_to request.referrer || messages_path
+  end
+
+  def unpost
+    @message.update_attributes(posted: false)
+    flash[:notice] = "Message unposted."
+    redirect_to request.referrer || messages_path
   end
 
 

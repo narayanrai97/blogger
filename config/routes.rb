@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   resources :tags
   resources :authors
   resources :impressions
-  resources :messages
+  resources :messages do
+    member do
+      put 'post', 'unpost'
+    end
+  end
 
   resources :author_sessions, only: [ :new, :create, :destroy ]
   get 'login'  => 'author_sessions#new'
