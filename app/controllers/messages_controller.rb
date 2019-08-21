@@ -1,3 +1,5 @@
+require 'exponent-server-sdk'
+
 class MessagesController < ApplicationController
   before_action :set_message, only: [:edit, :update, :destroy, :post, :unpost]
 
@@ -39,6 +41,23 @@ class MessagesController < ApplicationController
 
   def post
     @message.update_attributes(posted: true)
+    # @th_device = Device.find 8
+    @devices = Device.all
+
+    client = Exponent::Push::Client.new
+    messages = []
+    @devices.each do |device|
+      message = {
+        to: device.token,
+        sound: "default",
+        body: @message.title
+      }
+      messages << message
+    end
+
+byebug
+    client.publish messages
+
     flash[:notice] = "Message posted."
     redirect_to request.referrer || messages_path
   end
