@@ -16,6 +16,7 @@ gem 'jquery-rails', '4.3.1'
 gem 'turbolinks', '~> 5'
 gem "paperclip", git: "https://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk', '~> 2'
+gem 'exponent-server-sdk'
 gem 'sorcery'
 gem 'impressionist', '~> 1.6'
 gem 'grape'
