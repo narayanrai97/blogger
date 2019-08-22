@@ -15,6 +15,7 @@
 </ul>
 <%= will_paginate %><br/>
 
+<%= link_to "Back", root_path, class: "btn btn-info" %>
 <% if logged_in? %>
-    <%= link_to "New Event", new_event_path %>
+    <%= link_to "New Event", new_event_path, class: "btn btn-primary" %>
 <% end %>

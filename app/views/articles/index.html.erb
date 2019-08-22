@@ -5,7 +5,7 @@
     <% @articles.each do |article| %>
         <li>
             <h3><%= article.title %></h3>
-            
+
             <p style="font-style: italic; color: black;font-size: 15px">
                 on <%= article.created_at.strftime("%B %d, %Y") %>
                 (<%= article.comments.count %> comments)<br/>
@@ -15,15 +15,14 @@
                 </p>
             </p>
             <%= link_to "Read Article", article %>
-            
-    
+
+
         </li>
     <% end %>
 </ul>
 <%= will_paginate %><br/>
 
+<%= link_to "Back", root_path, class: "btn btn-info" %>
 <% if logged_in? %>
-    <%= link_to "New Article", new_article_path, class: "new_article"%> 
+    <%= link_to "New Article", new_article_path, class: "btn btn-primary new_article"%>
 <% end %>
-
-

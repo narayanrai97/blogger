@@ -10,7 +10,7 @@
   <% end %>
 </div>
 
-
+<%= link_to "Back", root_path, class: "btn btn-info" %>
 <% if logged_in? %>
-    <%= link_to "New Photo", new_photo_path %>
+    <%= link_to "New Photo", new_photo_path, class: "btn btn-primary" %>
 <% end %>

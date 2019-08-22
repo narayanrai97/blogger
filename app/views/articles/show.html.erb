@@ -1,12 +1,5 @@
 <h1><%= @article.title%></h1>
 
-<%= link_to "<button>Back to Articles</button>".html_safe, articles_path, style: 'float: right'%> 
-<% if logged_in? %>
-    <%= link_to "<button>Delete</button>".html_safe, article_path(@article), method: :delete, 
-                data: {:confirm => "Really delete the article?"}, style: 'float: right' %> 
-    <%= link_to "<button>Edit</button>".html_safe, edit_article_path(@article), style: 'float: right' %><br />
-<% end %>
-
 <!--Listing all the Tags here-->
 <p>
     <%= link_to "Tags:", tags_path %>
@@ -22,6 +15,12 @@
 
 <!--Article body here-->
 <p style="flow;"><%= @article.body %></p><br />
+<%= link_to "Back to Articles", articles_path, class: "btn btn-info"%>
+<% if logged_in? %>
+    <%= link_to "Delete", article_path(@article), method: :delete,
+                data: {:confirm => "Really delete the article?"}, class: "btn btn-warning" %>
+    <%= link_to "Edit", edit_article_path(@article), class: "btn btn-primary" %>
+<% end %>
 
 <!--Form to write a comment here-->
 <%= render partial: 'comments/form' %>
@@ -35,10 +34,8 @@
 <%= render partial: 'articles/comment', collection: @article.comments.reverse %>
 
 <p>
-    <%= link_to "<button>Back to Top</button>".html_safe, article_path(@article), style: 'float: right'%>
-</p><br /><br />
 
-
-
-
-        
+  <a style="float: right" href="/articles/#{@article.id}">
+    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+  </a>
+</p><br/><br/>
