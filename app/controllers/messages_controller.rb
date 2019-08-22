@@ -54,8 +54,11 @@ class MessagesController < ApplicationController
       messages << message
     end
 
-    client.publish messages
-
+    begin
+      client.publish messages
+    rescue Exponent::Push::UnknownError => e
+      Rails.logger.info e.message
+    end
     flash[:notice] = "Message posted."
     redirect_to request.referrer || messages_path
   end
