@@ -41,12 +41,11 @@ class MessagesController < ApplicationController
 
   def post
     @message.update_attributes(posted: true)
-    # @th_device = Device.find 8
-    @devices = Device.all
+    devices = Device.all
 
     client = Exponent::Push::Client.new
     messages = []
-    @devices.each do |device|
+    devices.each do |device|
       message = {
         to: device.token,
         sound: "default",
@@ -55,7 +54,6 @@ class MessagesController < ApplicationController
       messages << message
     end
 
-byebug
     client.publish messages
 
     flash[:notice] = "Message posted."
