@@ -2,6 +2,7 @@ require 'exponent-server-sdk'
 
 class MessagesController < ApplicationController
   before_action :set_message, only: [:edit, :update, :destroy, :post, :unpost]
+  before_action :admin_user,     except: :index
 
   def index
     @messages = Message.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
@@ -79,5 +80,10 @@ class MessagesController < ApplicationController
 
     def set_message
       @message = Message.find(params[:id])
+    end
+
+    # Confirms an admin user.
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end

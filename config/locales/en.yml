@@ -30,4 +30,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  en: English
+  es: Spanish
+  language: Language
+  message:
+    all_msg: Messages
+    new_msg: Create Message
+    edit_msg: Edit Message
+  buttons_t:
+    back: Back
+    edit: Edit
+    delete: Delete
+    save: Save
+    post: Post
+    unpost: Unpost
+    new: Create a Message
