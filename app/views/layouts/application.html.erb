@@ -7,12 +7,34 @@
   </head>
 
   <body>
+    <%= render 'layouts/header' %>
+    <div class="row">
+      <%= render 'layouts/sub_header' %>
+    </div>
     <div class="container">
-      <%= render 'layouts/header' %>
-      <p class="flash"><%= flash.notice %></p><br/>
+      <div class="row">
+        <% if notice %>
+         <p class="alert alert-success"><%= notice %></p>
+       <% end %>
+       <% if alert %>
+         <p class="alert alert-danger"><%= alert %></p>
+       <% end %>
+      </div>
+
+      <div class="row">
+         <% if @message.present? %>
+           <div id="div1">
+               <div class="alert alert-<%=@message.message_type%>">
+                 <div class="left">
+                   <h4><b><%= @message.title %></b></h4>
+                   <p><%= @message.body %></p>
+                 </div>
+               </div>
+           </div>
+        <% end %>
+      </div><br/>
 
       <%= yield %>
-
       <%= render 'layouts/footer' %>
     </div>
   </body>

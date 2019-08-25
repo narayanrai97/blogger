@@ -1,0 +1,10 @@
+<div class="links">
+  <%= link_to "ARTICLES", articles_path, class: "btn btn-outline-primary my-2 my-sm-0" %>
+  <%= link_to "PHOTOS", photos_path, class: "btn btn-outline-info my-2 my-sm-0"%>
+  <%= link_to "EVENTS", events_path, class: "btn btn-outline-info my-2 my-sm-0" %>
+  <% if logged_in? %>
+    <% if current_user.admin %>
+      <%= link_to "MESSAGES", messages_path, class: "btn btn-outline-info my-2 my-sm-0" %>
+    <% end %>
+  <% end %>
+</div>

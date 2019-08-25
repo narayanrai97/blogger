@@ -3,7 +3,7 @@
 
 /* universal */
 // $light-gray: #777;
-$gray-medium-light: #eaeaea; 
+$gray-medium-light: #eaeaea;
 
 body {
     padding-top: 70px;
@@ -90,7 +90,7 @@ footer {
          &:hover {
              color: red;
          }
-         
+
     }
     small {
           float: left;
@@ -108,6 +108,7 @@ footer {
 
 /* artiles' body overflow */
 .links {
-    text-align: right;
+    float: right;
+    margin-right: 80px;
+    background-color: #fcf8e3;
 }
-
