@@ -216,7 +216,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.1.1)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -364,7 +364,7 @@ DEPENDENCIES
   listen (= 3.1.5)
   paperclip!
   pg (= 0.18.4)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-cors
   rails (~> 5.1.5)
   rails-controller-testing
