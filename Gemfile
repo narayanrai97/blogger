@@ -7,7 +7,7 @@ end
 
 gem 'rails', '~> 5.1.5'
 gem 'pg',    '0.18.4'
-gem 'puma', '~> 3.7'
+gem 'puma',  ">= 3.12.2"
 gem 'bootstrap-sass','3.4.1'
 gem 'hirb'
 gem 'will_paginate',           '3.1.6'
