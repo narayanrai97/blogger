@@ -27,3 +27,4 @@
 
 database.yml
 bundler_stubs/
+*.txt
