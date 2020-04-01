@@ -27,4 +27,3 @@
 
 database.yml
 bundler_stubs/
-/config/puma.rb
