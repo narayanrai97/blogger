@@ -7,7 +7,7 @@ end
 
 ruby '2.5.3'
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.4'
 gem 'pg',    '0.18.4'
 gem 'puma',  ">= 3.12.2"
 gem 'bootstrap-sass','3.4.1'
@@ -29,6 +29,7 @@ gem 'grape-swagger', '0.11.0'
 gem 'sass-rails',   '~> 5.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'uglifier',     '>= 1.3.0'
+gem "activesupport", ">= 5.2.4.3"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
