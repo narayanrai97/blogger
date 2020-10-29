@@ -21,12 +21,12 @@ class CommentsController < ApplicationController
         @comment.article_id = params[:article_id]
 
         if @comment.save
-            flash.notice = "#{@comment.commenter} commented on the article #{@article.title}!"
-            redirect_to article_path(@comment.article)
-            AuthorMailer.article_comment(@comment.article).deliver
+          AuthorMailer.article_comment(@comment.article).deliver
+          flash.notice = "#{@comment.commenter} commented on the article #{@article.title}!"
+          redirect_to article_path(@comment.article)
         else
-            flash.notice = "Sorry, the comment couldn't be created!"
-            redirect_to article_path(@comment.article)
+          flash.notice = "Sorry, the comment couldn't be created!"
+          redirect_to article_path(@comment.article)
         end
     end
 
