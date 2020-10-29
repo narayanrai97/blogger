@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
         if @comment.save
             flash.notice = "#{@comment.commenter} commented on the article #{@article.title}!"
             redirect_to article_path(@comment.article)
-            AuthorMailer.with(article: @article).article_comment.deliver
+            AuthorMailer.article_comment(@comment.article).deliver
         else
             flash.notice = "Sorry, the comment couldn't be created!"
             redirect_to article_path(@comment.article)
