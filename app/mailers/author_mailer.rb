@@ -1,6 +1,8 @@
 class AuthorMailer < ApplicationMailer
   default from: "blogger.me@gamil.com"
 
+  layout "mailer"
+
   def article_comment(article)
     # @author = params[:author]
     @article = article
