@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
         @comment.article_id = params[:article_id]
 
         if @comment.save
-          AuthorMailer.article_comment(@comment.article).deliver
+          AuthorMailer.article_comment(@article, @article.author).deliver_now!
           flash.notice = "#{@comment.commenter} commented on the article #{@article.title}!"
           redirect_to article_path(@comment.article)
         else
