@@ -2,6 +2,7 @@ class Author < ApplicationRecord
   ## Relationships
   has_many :articles
   has_many :author_tokens, dependent: :destroy
+  has_one :user
 
   # default_scope -> { order("created_at DESC") }
 
