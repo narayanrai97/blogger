@@ -10,7 +10,7 @@
     </p>
     <p>
         <%= f.label :category %><br />
-        <%= f.text_field :category_id %>
+        <%= f.select(:category_id, categories_for_select, :prompt => 'Select') %>
     </p>
     <p>
         <%= f.label :body %><br />
